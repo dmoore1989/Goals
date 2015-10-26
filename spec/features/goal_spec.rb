@@ -19,9 +19,7 @@ feature "the goal process" do
     end
 
     it "adds goal to page once submitted" do
-      click_link "Add Goal"
       add_goal_to_douggie
-
       expect(page).to have_content("Test Goal")
     end
 
@@ -29,9 +27,33 @@ feature "the goal process" do
 
   feature "edit goals" do
 
-    it "allows a user to edit a goal"
+    it "allows a user to edit their goals" do
+      add_goal_to_douggie
+      click_link "Edit Goal"
+      expect(page).to have_content("Edit Goal")
+    end
 
-    it "updates goal on user page"
+    it "updates goal on user page" do
+      add_goal_to_douggie
+      edit_test_goal
+      expect(page).to have_content("Test Goal2")
+    end
+
+    it "does not allow other user to edit a goal" do
+      add_goal_to_douggie
+      click_button('Sign Out')
+      login_as_jon
+      visit('/users/1')
+      expect(page).to have_no_content("Edit Goal")
+    end
+
+    it "redirects other user on edit" do
+      add_goal_to_douggie
+      click_button('Sign Out')
+      login_as_jon
+      visit('/goals/1/edit')
+      expect(page).to have_content("Invalid User")
+    end
 
   end
 

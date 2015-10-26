@@ -56,8 +56,22 @@ def login_douggie
 end
 
 def add_goal_to_douggie
+  click_link "Add Goal"
   fill_in 'Title', with: "Test Goal"
   fill_in 'Description', with: "This is a test"
   choose 'Private'
   click_button "Submit Goal"
+end
+
+def edit_test_goal
+  click_link "Edit Goal"
+  fill_in 'Title', with: "Test Goal2"
+  click_button "Update Goal"
+end
+
+def login_as_jon
+  visit '/users/new'
+  fill_in 'Username', with: "jon"
+  fill_in 'Password', with: "hello1"
+  click_button 'Sign Up'
 end

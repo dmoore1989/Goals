@@ -2,5 +2,15 @@
 
 <h3>Your Goals</h3>
 
+<ul>
+  <% @user.goals.each do |goal| %>
+    <li><a href="<%= goal_url(goal) %>"><%= goal.name %></a>
+      <% if current_user == @user %>
+        <a href="<%= edit_goal_url(goal) %>">Edit Goal</a>
+      <% end %>
+
+    </li>
+  <% end %>
+</ul>
 
 <a href="<%= new_goal_url %>">Add Goal</a>

@@ -7,11 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
 
 <%= yield %>
 
 <% if logged_in? %>
-  <%= current_user %>
+  <h4>Signed in as: <%= current_user.username %></h4>
   <form action="<%= session_url %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <%= auth_token %>
