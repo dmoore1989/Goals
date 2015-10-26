@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026144435) do
+ActiveRecord::Schema.define(version: 20151026155939) do
+
+  create_table "goals", force: :cascade do |t|
+    t.string   "name",                        null: false
+    t.text     "description",                 null: false
+    t.boolean  "private",                     null: false
+    t.boolean  "completed",   default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -20,5 +30,7 @@ ActiveRecord::Schema.define(version: 20151026144435) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "users", ["session_token"], name: "index_users_on_session_token"
 
 end
