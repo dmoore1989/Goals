@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026155939) do
+ActiveRecord::Schema.define(version: 20151026200004) do
+
+  create_table "goal_comments", force: :cascade do |t|
+    t.text     "comment",    null: false
+    t.integer  "goal_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "goal_comments", ["goal_id"], name: "index_goal_comments_on_goal_id"
 
   create_table "goals", force: :cascade do |t|
     t.string   "name",                        null: false
@@ -22,6 +31,15 @@ ActiveRecord::Schema.define(version: 20151026155939) do
     t.datetime "updated_at",                  null: false
     t.integer  "user_id"
   end
+
+  create_table "user_comments", force: :cascade do |t|
+    t.text     "comment",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_comments", ["user_id"], name: "index_user_comments_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
