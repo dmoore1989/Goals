@@ -31,8 +31,18 @@ end
 
 feature "logging out" do
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    visit ('/session/new')
+    expect(page).to have_content('Sign In')
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    sign_up_douggie
+    click_button "Sign Out"
+    login_douggie
+    click_button "Sign Out"
+
+    expect(page).to have_content('Sign In')
+  end
 
 end
