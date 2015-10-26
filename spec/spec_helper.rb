@@ -83,3 +83,19 @@ def login_as_jon
   fill_in 'Password', with: "hello1"
   click_button 'Sign Up'
 end
+
+def add_comment
+  sign_up_douggie
+  click_button "Sign Out"
+  login_as_jon
+  visit ('/users/1')
+  fill_in 'Comment', with: "Looking good bro!"
+  click_button 'Add Comment'
+end
+
+def login_morty
+  visit '/users/new'
+  fill_in 'Username', with: "morty"
+  fill_in 'Password', with: "hello1"
+  click_button 'Sign Up'
+end

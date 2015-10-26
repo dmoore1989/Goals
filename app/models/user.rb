@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :goals
-  has_many :comments
+  has_many :comments, class_name: "UserComment", foreign_key: :user_id
+  has_many :commented_users, class_name: 'User', foreign_key: :commenter_id
 
   after_initialize :ensure_session_token
   attr_reader :password
