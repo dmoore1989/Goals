@@ -1,0 +1,26 @@
+<h1> <%= @goal.name %> </h1>
+
+<% if @goal.completed %>
+  <h2> Goal is Completed!</h2>
+<% end %>
+
+<h3>Goal Description: <%= @goal.description %> </h3>
+<h3>Goal Publicity: <%= @goal.private ? "Private" : "Public" %> </h3>
+<h3>
+
+
+<% if current_user.id == @goal.user_id %>
+<form action="<%= goal_url(@goal) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= auth_token %>
+  <label>Complete
+    <input type="radio" name="goal[completed]" value="true" <%= @goal.completed ? "checked" : "" %>>
+  </label>
+  <label>Incomplete
+      <input type="radio" name="goal[completed]" value="false" <%= @goal.completed ? "" : "checked" %>>
+  </label>
+
+
+  <input type="submit" value="Update Goal" >
+</form>
+<% end %>

@@ -18,6 +18,8 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @goal = Goal.find(params[:id])
+    render :show
   end
 
   def edit
@@ -26,10 +28,8 @@ class GoalsController < ApplicationController
   end
 
   def update
-
-
     if @goal.update(goal_params)
-      redirect_to user_url(@goal.user_id)
+      redirect_to goal_url(@goal)
     else
       flash.now[:errors] = @goal.errors.full_messages
       render :new
@@ -40,7 +40,7 @@ class GoalsController < ApplicationController
   end
 
   def goal_params
-    params.require(:goal).permit(:name, :description, :private, :user_id)
+    params.require(:goal).permit(:name, :description, :private, :user_id, :completed)
   end
 
   def ensure_correct_user

@@ -58,11 +58,30 @@ feature "the goal process" do
   end
 
   feature "show goal" do
-    it "shows goal when selected from user page"
+    before(:each) { add_goal_to_douggie }
 
-    it "allows user to complete goal from show page"
+    it "shows goal when selected from user page" do
+       click_link("Test Goal")
+       expect(page).to have_content("Test Goal")
+    end
 
-    it "allows only the correct user to see private goal"
+    it "allows user to complete goal from show page" do
+      click_link("Test Goal")
+      choose('Complete')
+      click_button('Update Goal')
+      expect(page).to have_content('Goal is Completed!')
+    end
+
+      feature "private goal" do
+        before(:each) { add_private_goal_to_douggie }
+
+        it "allows only the correct user to see private goal" do
+          expect(page).to have_content('Private Goals')
+        end
+
+        it "doesn't allow other users to see private goals"
+
+      end
   end
 
   feature "delete goal" do
