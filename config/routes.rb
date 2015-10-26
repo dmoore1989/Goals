@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :goals
 
   resources :user_comments, only: [:create, :destroy]
+  resources :goal_comments, only: [:create, :destroy]
 end

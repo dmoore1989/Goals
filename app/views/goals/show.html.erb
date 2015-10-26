@@ -24,3 +24,8 @@
   <input type="submit" value="Update Goal" >
 </form>
 <% end %>
+
+<h3>Comments</h3>
+<%= render 'goal_comments/index', comments: @goal.comments %>
+<h4>Add Comment</h4>
+<%= render 'goal_comments/new', goal: @goal %>

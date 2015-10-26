@@ -99,3 +99,13 @@ def login_morty
   fill_in 'Password', with: "hello1"
   click_button 'Sign Up'
 end
+
+def add_goal_comment
+  sign_up_douggie
+  add_goal_to_douggie
+  click_button "Sign Out"
+  login_as_jon
+  visit ('/goals/1')
+  fill_in 'Comment', with: "Looking good bro!"
+  click_button 'Add Comment'
+end
