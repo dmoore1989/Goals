@@ -3,10 +3,10 @@ require 'rails_helper'
 
 feature "the signup process" do
 
-  it "has a new user page"
+  it "has a new user page" do
     visit('/users/new')
     expect(page).to have_content('New User')
-
+  end
   feature "signing up a user" do
 
     it "shows username on the homepage after signup"
