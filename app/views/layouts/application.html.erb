@@ -10,5 +10,17 @@
 
 <%= yield %>
 
+<% if logged_in? %>
+  <%= current_user %>
+  <form action="<%= session_url %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <%= auth_token %>
+    <input type="submit" value="Sign Out" >
+  </form>
+<% else %>
+  <a href="<%= new_session_url %>">Sign In</a>
+  <a href="<%= new_user_url %>">Sign Up</a>
+<% end %>
+
 </body>
 </html>

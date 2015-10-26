@@ -20,8 +20,13 @@ end
 
 feature "logging in" do
 
-  it "shows username on the homepage after login"
+  it "shows username on the homepage after login" do
+    sign_up_douggie
+    click_button "Sign Out"
+    login_douggie
 
+    expect(page).to have_content('Douggie')
+  end
 end
 
 feature "logging out" do

@@ -47,3 +47,10 @@ def sign_up_douggie
   fill_in 'Password', with: "hello1"
   click_button 'Sign Up'
 end
+
+def login_douggie
+  visit '/session/new'
+  fill_in 'Username', with: "Douggie"
+  fill_in 'Password', with: "hello1"
+  click_button 'Sign In'
+end
