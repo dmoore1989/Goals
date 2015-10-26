@@ -76,19 +76,37 @@ feature "the goal process" do
         before(:each) { add_private_goal_to_douggie }
 
         it "allows only the correct user to see private goal" do
-          expect(page).to have_content('Private Goals')
+          expect(page).to have_content('Secret')
+
         end
 
-        it "doesn't allow other users to see private goals"
+        it "doesn't allow other users to see private goals" do
+          click_button('Sign Out')
+          login_as_jon
+          visit('/users/1')
+          expect(page).to have_no_content('Secret')
+        end
 
       end
   end
 
   feature "delete goal" do
-    it "allows user to delete a goal from user page"
+    before(:each) { add_goal_to_douggie }
 
-    it "doesn't allow other user to delete goal"
+    it "allows user to delete a goal from user page" do
+      expect(page).to have_button('Delete Goal')
+    end
 
-    it "deletes goal on submission"
+    it "doesn't allow other user to delete goal" do
+      click_button('Sign Out')
+      login_as_jon
+      visit('/users/1')
+      expect(page).to have_no_content('Delete Goal')
+    end
+
+    it "deletes goal on submission" do
+      click_button('Delete Goal')
+      expect(page).to have_no_content('Test Goal')
+    end
   end
 end

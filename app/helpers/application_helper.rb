@@ -9,5 +9,13 @@ module ApplicationHelper
     HTML
   end
 
+  def public_goals(user)
+    user.goals.where(private: false)
+  end
+
+  def private_goals(user)
+    user.goals.where(private:true)
+  end
+
 
 end

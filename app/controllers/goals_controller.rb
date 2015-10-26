@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
     @goal = Goal.new
@@ -37,6 +37,8 @@ class GoalsController < ApplicationController
   end
 
   def destroy
+    @goal = Goal.find(params[:id]).destroy
+    redirect_to user_url(@goal.user_id)
   end
 
   def goal_params

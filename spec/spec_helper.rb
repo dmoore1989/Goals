@@ -65,9 +65,9 @@ end
 
 def add_private_goal_to_douggie
   click_link "Add Goal"
-  fill_in 'Title', with: "Test Goal"
-  fill_in 'Description', with: "This is a test"
-  choose 'Public'
+  fill_in 'Title', with: "Secret"
+  fill_in 'Description', with: "This is private"
+  choose 'Private'
   click_button "Submit Goal"
 end
 

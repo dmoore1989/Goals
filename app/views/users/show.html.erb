@@ -1,16 +1,35 @@
 <h1><%= @user.username %></h1>
 
 <h3>Your Goals</h3>
-
 <ul>
-  <% @user.goals.each do |goal| %>
+  <% public_goals(@user).each do |goal| %>
     <li><a href="<%= goal_url(goal) %>"><%= goal.name %></a>
       <% if current_user == @user %>
         <a href="<%= edit_goal_url(goal) %>">Edit Goal</a>
+        <form action="<%= goal_url(goal) %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <%= auth_token %>
+          <input type="submit" value="Delete Goal" >
+        </form>
       <% end %>
 
     </li>
   <% end %>
 </ul>
+<% if current_user == @user %>
+  <h3>Private Goals</h3>
+  <ul>
+  <% private_goals(@user).each do |goal| %>
+    <li><a href="<%= goal_url(goal) %>"><%= goal.name %></a>
+        <a href="<%= edit_goal_url(goal) %>">Edit Goal</a>
+        <form action="<%= goal_url(goal) %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <%= auth_token %>
+          <input type="submit" value="Delete Goal" >
+        </form>
+    </li>
 
+    <% end %>
+  </ul>
+<% end %>
 <a href="<%= new_goal_url %>">Add Goal</a>
