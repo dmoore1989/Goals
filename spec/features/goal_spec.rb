@@ -14,10 +14,16 @@ feature "the goal process" do
   feature "new goals" do
 
     it "allows a user to add a goal" do
-      sign_up_douggie
+      click_link "Add Goal"
+      expect(page).to have_content('Add Goal to Douggie')
     end
 
-    it "adds goal to page once submitted"
+    it "adds goal to page once submitted" do
+      click_link "Add Goal"
+      add_goal_to_douggie
+
+      expect(page).to have_content("Test Goal")
+    end
 
   end
 
@@ -38,6 +44,10 @@ feature "the goal process" do
   end
 
   feature "delete goal" do
-    it "allows user to be lazy, give up, and delete a goal because they suck"
+    it "allows user to delete a goal from user page"
+
+    it "doesn't allow other user to delete goal"
+
+    it "deletes goal on submission"
   end
 end

@@ -54,3 +54,10 @@ def login_douggie
   fill_in 'Password', with: "hello1"
   click_button 'Sign In'
 end
+
+def add_goal_to_douggie
+  fill_in 'Title', with: "Test Goal"
+  fill_in 'Description', with: "This is a test"
+  choose 'Private'
+  click_button "Submit Goal"
+end
