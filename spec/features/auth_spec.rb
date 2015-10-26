@@ -9,12 +9,11 @@ feature "the signup process" do
   end
   feature "signing up a user" do
 
-    it "shows username on the homepage after signup"
-      visit('users.new')
+    it "shows username on the homepage after signup" do
       sign_up_douggie
 
       expect(page).to have_content('Douggie')
-
+    end
   end
 
 end
