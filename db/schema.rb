@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028173001) do
+ActiveRecord::Schema.define(version: 20151028173610) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "comment"
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.integer  "commenter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
