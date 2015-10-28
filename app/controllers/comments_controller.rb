@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  class GoalCommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     unless @comment.save
@@ -9,11 +8,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = GoalComment.find(params[:id]).destroy
+    @comment = Comment.find(params[:id]).destroy
     redirect_to goal_url(@comment.goal_id)
   end
 
   def comment_params
-    params.require(:comment).permit(:comment, :goal_id, :commenter_id)
+    params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :commenter_id)
   end
 end
