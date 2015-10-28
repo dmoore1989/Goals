@@ -30,7 +30,7 @@ feature "goal_comments" do
       expect(page).to have_button("Delete Comment")
     end
 
-    it "allows for goal to delete comment" do
+    it "allows for user to delete comment" do
       click_button 'Sign Out'
       login_douggie
       visit('/goals/1')

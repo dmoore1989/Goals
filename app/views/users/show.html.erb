@@ -35,6 +35,6 @@
 <a href="<%= new_goal_url %>">Add Goal</a>
 
 <h3>Comments</h3>
-<%= render 'user_comments/index', comments: @user.comments %>
+<%= render 'comments/show', comments: @user.comments %>
 <h4>Add Comment</h4>
-<%= render 'user_comments/new', user: @user %>
+<%= render 'comments/new', commentable: @user %>

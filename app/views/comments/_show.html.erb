@@ -1,8 +1,8 @@
 <% comments.each do |comment| %>
   <p><%= comment.comment %></p>
   <h5>Posted by <%= comment.commenter.username %></h5>
-  <% if comment.commenter == current_user || comment.goal.user == current_user %>
-    <form action="<%= goal_comment_url(comment) %>" method="post">
+  <% if comment.commenter == current_user || comment.commentable_id == current_user.id %>
+    <form action="<%= comment_url(comment.id) %>" method="post">
       <input type="hidden" name="_method" value="delete">
       <%= auth_token %>
       <input type="submit" value="Delete Comment" >
