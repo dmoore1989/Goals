@@ -4,12 +4,12 @@ class CommentsController < ApplicationController
     unless @comment.save
       flash[:errors] = @comment.errors.full_messages
     end
-    redirect_to goal_url(@comment.goal_id)
+    redirect_to "/#{@comment.commentable_type.downcase.pluralize}/#{@comment.commentable_id}"
   end
 
   def destroy
     @comment = Comment.find(params[:id]).destroy
-    redirect_to goal_url(@comment.goal_id)
+    redirect_to "/#{@comment.commentable_type.downcase.pluralize}/#{@comment.commentable_id}"
   end
 
   def comment_params
